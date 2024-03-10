@@ -34,6 +34,8 @@ public class PhoneBookTest extends BaseTest {
         Assert.assertTrue(isAlertHandled);
 
     }
+
+
     @Test
     @Description("User already exist. Login and add contact.")
     public void loginOfAnExistingUserAddContact() throws InterruptedException {
@@ -62,4 +64,24 @@ public class PhoneBookTest extends BaseTest {
         Thread.sleep(3000);
 
     }
+    @Test(description = "Successful registration of valid data")
+    @Parameters("browser")
+    public void successfulRegistration(@Optional("chrome")String browser){
+        Allure.description("New registration");
+        MainPage mainPage = new MainPage(getDriver());
+        // Allure.step("Step 1. Click by Login button");
+
+        LoginPage loginPage = mainPage.openTopMenu(TopMenuItem.LOGIN.toString());
+        // Allure.step("Click by Reg button");
+        String expectedString = "Sign Out";
+
+        Alert alert= loginPage.fillEmailField("mweyail@mail.com").fillPasswordField("Edjhu2qe!").clickByRegistartionBUtton();
+        // Allure.step("Click by Reg button");
+        boolean isAlertHandled = AlertHandler.handleAlert(alert, expectedString);
+        Assert.assertEquals("Sign Out", expectedString);
+        System.out.println();
+
+
+    }
+
 }

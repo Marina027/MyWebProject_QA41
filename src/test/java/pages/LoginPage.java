@@ -13,7 +13,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class LoginPage extends BasePage{
-    @FindBy(xpath = "//input[@name='email']") // Эта строка использует аннотацию @FindBy для поиска веб-элемента на веб-странице с помощью XPath-выражения. В данном случае, элемент найден по XPath, который ищет <input> элемент с атрибутом name, равным "email".
+    @FindBy(xpath = "//input[@name='email']") // Эта строка использует аннотацию @FindBy для поиска веб-элемента
+    // на веб-странице с помощью XPath-выражения. В данном случае, элемент найден по XPath, который
+    // ищет <input> элемент с атрибутом name, равным "email".
     // Найденный элемент сохраняется в переменной emailField типа WebElement.
     WebElement emailField;
 
@@ -40,7 +42,8 @@ public class LoginPage extends BasePage{
     public Alert clickByRegistartionBUtton(){ // Этот метод кликает по кнопке регистрации на веб-странице.
         // Он вызывает метод click() для registrationButton.
         registrationButton.click();
-        return getAlertIfPresent(); // Затем он также возвращает объект LoginPage, чтобы этот метод также можно было использовать в цепочке вызовов.
+        return getAlertIfPresent(); // Затем он также возвращает объект LoginPage, чтобы этот метод также можно
+        // было использовать в цепочке вызовов.
     }
 
     public LoginPage fillPasswordField(String password){
