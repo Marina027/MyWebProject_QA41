@@ -79,7 +79,7 @@ public class PhoneBookTest extends BaseTest {
         // Allure.step("Click by Reg button");
         boolean isAlertHandled = AlertHandler.handleAlert(alert, expectedString);
         Assert.assertEquals("Sign Out", expectedString);
-        System.out.println();
+
 
 
     }
