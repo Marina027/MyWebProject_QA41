@@ -1,21 +1,15 @@
 package pages;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public class LoginPage extends BasePage{
-    @FindBy(xpath = "//input[@name='email']") // Эта строка использует аннотацию @FindBy для поиска веб-элемента
-    // на веб-странице с помощью XPath-выражения. В данном случае, элемент найден по XPath, который
-    // ищет <input> элемент с атрибутом name, равным "email".
+    @FindBy(xpath = "//input[@name='email']") // Эта строка использует аннотацию @FindBy для поиска веб-элемента на веб-странице с помощью XPath-выражения. В данном случае, элемент найден по XPath, который ищет <input> элемент с атрибутом name, равным "email".
     // Найденный элемент сохраняется в переменной emailField типа WebElement.
     WebElement emailField;
 
@@ -39,11 +33,12 @@ public class LoginPage extends BasePage{
         return  this;  // Затем метод возвращает объект LoginPage, что позволяет использовать этот метод в цепочке вызовов
     }
 
-    public Alert clickByRegistartionBUtton(){ // Этот метод кликает по кнопке регистрации на веб-странице.
+    public Alert clickByRegistartionButton(){ // Этот метод кликает по кнопке регистрации на веб-странице.
         // Он вызывает метод click() для registrationButton.
-        registrationButton.click();
-        return getAlertIfPresent(); // Затем он также возвращает объект LoginPage, чтобы этот метод также можно
-        // было использовать в цепочке вызовов.
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement regButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@name='registration']")));
+        regButton.click();
+        return getAlertIfPresent(); // Затем он также возвращает объект LoginPage, чтобы этот метод также можно было использовать в цепочке вызовов.
     }
 
     public LoginPage fillPasswordField(String password){
@@ -69,7 +64,7 @@ public class LoginPage extends BasePage{
      */
     private Alert getAlertIfPresent(){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000)); // Создается новый объект класса WebDriverWait,
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(3000)); // Создается новый объект класса WebDriverWait,
             // который ожидает определенный период времени (в данном случае 5000 миллисекунд или 5 секунд).
             // Он используется для ожидания появления всплывающего окна.
             return wait.until(ExpectedConditions.alertIsPresent()); // ExpectedConditions.alertIsPresent() указывает,
